@@ -1,0 +1,22 @@
+# version: '3'
+services:
+  mysql:
+    image: 'mysql:8.0'
+    platform: linux/amd64
+    container_name: sql-container
+    ports:
+        - '3307:3306'
+    environment:
+        MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+        TZ: 'Asia/Tokyo'
+    volumes:
+      - './my.cnf:/etc/mysql/conf.d/my.cnf'
+    restart: always
+    networks:
+        - default_network
+volumes:
+  db-data-2:
+
+networks:
+    default_network:
+        external: true
